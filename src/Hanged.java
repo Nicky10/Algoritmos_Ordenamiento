@@ -3,11 +3,16 @@
  */
 
 import javax.swing.*;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Hanged extends JFrame{
     public Hanged(){
-        add(new Panel());
+        JPanel man = new Panel();
+        man.setPreferredSize(new Dimension(800,1000));
+        JPanel kb = new KeyBoard((Panel) man);
+        kb.setPreferredSize(new Dimension(200,1000));
+        this.add(man, BorderLayout.WEST);
+        this.add(kb, BorderLayout.EAST);
     }
     public static void main(String[] args){
         Hanged frame = new Hanged();

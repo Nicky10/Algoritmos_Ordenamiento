@@ -22,7 +22,9 @@ public class Panel extends JPanel implements ActionListener,MouseListener{
     private int lx =400;
     private int ly =600;
 
+
     public Panel(){
+        add(p);
         w.selectnumber();
         letters = new char[w.getNlenght()];
         addKeyListener(new TAdapter());
@@ -53,8 +55,10 @@ public class Panel extends JPanel implements ActionListener,MouseListener{
 
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
         repaint();
     }
 
@@ -126,14 +130,33 @@ public class Panel extends JPanel implements ActionListener,MouseListener{
             d.drawString(tem, x, y);
         }
     }
+    public void review(char k){
+        int l =0;
+        for (int i=0;i<w.getword().length();i++){
+            if (k == w.getword().charAt(i)){
+                l++;
+                letters[lb] = w.getword().charAt(i);
+                lb++;
+            }
+        }
+        if(l == 0){
+            h++;
+            l=0;
+        }
+    }
 
     private class TAdapter extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e) {
 
-            int l =0;
-            int key = e.getKeyCode();
+
             char k = e.getKeyChar();
+            this.review(k);
+
+
+        }
+        public void review(char k){
+            int l =0;
             for (int i=0;i<w.getword().length();i++){
                 if (k == w.getword().charAt(i)){
                     l++;
@@ -145,13 +168,14 @@ public class Panel extends JPanel implements ActionListener,MouseListener{
                 h++;
                 l=0;
             }
-
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
 
         }
+
+
     }
 }
 
