@@ -19,16 +19,17 @@ import javax.swing.JTextField;
  *
  * @author ADMIN
  */
-public class NewClass extends JFrame implements ActionListener{
+public class Vista extends JFrame{
 
     public JLabel titulo,interes,años,loan,mensual,total;
     public JTextField Tinteres,Taños,Tloan,Tmensual,Ttotal;
     public JButton boton;
     public GridLayout Grid = new GridLayout(5,2);
     public FlowLayout Flow = new FlowLayout();
+    public Controlador controlador;
     
     
-    public NewClass(){
+    public Vista(){
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400,1200);
@@ -58,44 +59,19 @@ public class NewClass extends JFrame implements ActionListener{
         add(Tmensual);
         add(Ttotal);
         
-        setLayout(Flow);
         this.boton = new JButton("Compute Payment");
         
         add(boton);
+        pack();
         
-        
-    }
+    }    
     
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        String a=Taños.getText();
-        int años=Integer.parseInt(a);
-        String i=Tinteres.getText();
-        double interes=Integer.getInteger(i);
-        String l=Tloan.getText();
-        double loan=Integer.getInteger(l);
-        
-        double mensual = loan*(interes/12);
-        Tmensual.setText(""+mensual);
-        double total = loan+(años*(mensual*12));
-        Ttotal.setText(""+total);
-        repaint();
-        
-        
+    public void setControlador(Controlador controlador){
+            
+            this.controlador = controlador;
+            this.boton.addActionListener(this.controlador);
+            
         }
-
-    public NewClass(JTextField Tinteres, JTextField Taños, JTextField Tloan, JTextField Tmensual, JTextField Ttotal) {
-        this.Tinteres = Tinteres;
-        this.Taños = Taños;
-        this.Tloan = Tloan;
-        this.Tmensual = Tmensual;
-        this.Ttotal = Ttotal;
-        this.boton.addActionListener(this);
-    }
-    
-    
 
     public JTextField getTinteres() {
         return Tinteres;

@@ -13,8 +13,10 @@ public class Main {
     
     public static void main(String args[]){
         
-        NewClass nicky = new NewClass();
-        nicky.setVisible(true);
+        Vista vista = new Vista();
+        Modelo modelo = new Modelo();
+        Controlador controlador = new Controlador(modelo,vista);
+        controlador.Comenzar();
         
     }
     
